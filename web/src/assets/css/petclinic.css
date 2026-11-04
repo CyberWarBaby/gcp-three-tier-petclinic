@@ -1,0 +1,312 @@
+/* Spring Petclinic theme overrides for Bootstrap 5.3. */
+@font-face {
+  font-family: 'varela_roundregular';
+  src: url('../fonts/varela_round-webfont.eot');
+  src: url('../fonts/varela_round-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/varela_round-webfont.woff') format('woff'),
+    url('../fonts/varela_round-webfont.ttf') format('truetype'),
+    url('../fonts/varela_round-webfont.svg#varela_roundregular') format('svg');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'montserratregular';
+  src: url('../fonts/montserrat-webfont.eot');
+  src: url('../fonts/montserrat-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/montserrat-webfont.woff') format('woff'),
+    url('../fonts/montserrat-webfont.ttf') format('truetype'),
+    url('../fonts/montserrat-webfont.svg#montserratregular') format('svg');
+  font-style: normal;
+  font-weight: normal;
+}
+
+:root {
+  --spring-green: #6db33f;
+  --spring-dark-green: #5fa134;
+  --spring-brown: #34302d;
+  --spring-grey: #838789;
+  --spring-light-grey: #f1f1f1;
+  --bs-body-bg: var(--spring-light-grey);
+  --bs-body-color: var(--spring-brown);
+  --bs-link-color: var(--spring-dark-green);
+  --bs-link-hover-color: var(--spring-dark-green);
+  --bs-border-radius: 0;
+  --bs-border-radius-sm: 0;
+  --bs-border-radius-lg: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+input,
+select,
+textarea,
+button {
+  color: var(--spring-brown);
+  font-family: 'varela_roundregular', sans-serif;
+  font-weight: 400;
+}
+
+body {
+  background-color: var(--spring-light-grey);
+}
+
+h1,
+h2,
+strong {
+  font-family: 'montserratregular', sans-serif;
+}
+
+h1 {
+  font-size: 24px;
+  line-height: 30px;
+  margin-bottom: 15px;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+
+strong {
+  font-weight: 700;
+}
+
+.navbar-petclinic {
+  background-color: var(--spring-brown);
+  border: 0;
+  border-radius: 0;
+  border-top: 4px solid var(--spring-green);
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.navbar-petclinic .navbar-brand {
+  background: url('../images/spring-logo-dataflow.png') -1px -1px no-repeat;
+  display: inline-block;
+  height: 46px;
+  margin: 12px 0 6px;
+  padding: 0;
+  text-decoration: none;
+  width: 229px;
+}
+
+.navbar-petclinic .navbar-brand span {
+  background: url('../images/spring-logo-dataflow.png') -1px -48px no-repeat;
+  display: block;
+  height: 46px;
+  opacity: 0;
+  transition: opacity 0.12s ease-in-out;
+  width: 229px;
+}
+
+.navbar-petclinic .navbar-brand:hover span,
+.navbar-petclinic .navbar-brand:focus span {
+  opacity: 1;
+}
+
+.navbar-petclinic .navbar-nav {
+  align-items: stretch;
+  column-gap: 0.5rem;
+}
+
+.navbar-petclinic .nav-link {
+  color: var(--spring-light-grey);
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  height: 100%;
+  padding: 28px 20px;
+  text-transform: uppercase;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.navbar-petclinic .nav-link:hover,
+.navbar-petclinic .nav-link:focus,
+.navbar-petclinic .nav-link.active,
+.navbar-petclinic .nav-link.show {
+  background-color: var(--spring-green);
+  color: #eee;
+}
+
+.navbar-petclinic .dropdown-menu {
+  background-color: #fff;
+  border: 0;
+  border-radius: 0;
+  margin-top: 0;
+}
+
+.navbar-petclinic .dropdown-item {
+  color: var(--spring-brown);
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  padding: 0.65rem 1rem;
+  text-transform: uppercase;
+}
+
+.navbar-petclinic .dropdown-item:hover,
+.navbar-petclinic .dropdown-item:focus,
+.navbar-petclinic .dropdown-item.active {
+  background-color: var(--spring-green);
+  color: #fff;
+}
+
+.navbar-petclinic .navbar-toggler {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--spring-light-grey);
+}
+
+.navbar-petclinic .navbar-toggler-icon {
+  background-image: var(--bs-navbar-toggler-icon-bg);
+  filter: invert(1) grayscale(1) brightness(2);
+}
+
+.form-control,
+.form-select,
+.btn,
+.dropdown-menu,
+.alert,
+.input-group-text {
+  border-radius: 0;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--spring-green);
+  box-shadow: 0 0 0 0.2rem rgb(109 179 63 / 25%);
+}
+
+.btn-secondary {
+  --bs-btn-bg: var(--spring-brown);
+  --bs-btn-border-color: var(--spring-green);
+  --bs-btn-color: var(--spring-light-grey);
+  --bs-btn-hover-bg: var(--spring-brown);
+  --bs-btn-hover-border-color: var(--spring-brown);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: var(--spring-brown);
+  --bs-btn-active-border-color: var(--spring-brown);
+  --bs-btn-disabled-bg: var(--spring-brown);
+  --bs-btn-disabled-border-color: var(--spring-green);
+  border-width: 2px;
+  transition: border-color 0.15s;
+}
+
+.table > thead > tr > th {
+  background-color: #3c3834;
+  color: var(--spring-light-grey);
+}
+
+.table > :not(caption) > * > * {
+  border-color: var(--spring-brown);
+  vertical-align: middle;
+}
+
+.table-filter {
+  background-color: var(--spring-brown);
+  padding: 9px 12px;
+}
+
+.xd-container {
+  margin-bottom: 100px;
+  margin-top: 40px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.index-page--subtitle {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0 0 30px;
+}
+
+.error-page {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.error-page .error-title {
+  font-size: 24px;
+  line-height: 24px;
+  margin: 30px 0 0;
+}
+
+.invalid-feedback,
+.form-text {
+  color: #9b2c2c;
+}
+
+hr {
+  border-top: 1px dotted var(--spring-brown);
+}
+
+@media (max-width: 991.98px) {
+  .navbar-petclinic {
+    border-top-width: 0;
+  }
+
+  .navbar-petclinic .container-fluid {
+    min-height: 50px;
+    position: relative;
+  }
+
+  .navbar-petclinic .navbar-toggler {
+    left: 0.5rem;
+    position: absolute;
+    top: 0.35rem;
+    z-index: 2;
+  }
+
+  .navbar-petclinic .navbar-brand {
+    background: url('../images/spring-logo-dataflow-mobile.png') 0 center no-repeat;
+    display: block;
+    height: 50px;
+    margin: 0 auto;
+    width: 148px;
+  }
+
+  .navbar-petclinic .navbar-brand span {
+    display: none;
+  }
+
+  .navbar-petclinic .navbar-collapse {
+    flex-basis: 100%;
+  }
+
+  .navbar-petclinic .navbar-nav {
+    align-items: stretch;
+    column-gap: 0;
+    padding-bottom: 0.5rem;
+  }
+
+  .navbar-petclinic .nav-link {
+    padding: 0.8rem 1rem;
+  }
+
+  .navbar-petclinic .dropdown-menu {
+    background-color: #fff;
+    margin: 0 1rem 0.5rem;
+  }
+
+  .xd-container {
+    margin-bottom: 30px;
+    margin-top: 20px;
+  }
+
+  .index-page--subtitle {
+    margin-bottom: 30px;
+    margin-top: 10px;
+  }
+}

@@ -1,0 +1,83 @@
+<!--
+~ /*
+~  * Copyright 2016-2018 the original author or authors.
+~  *
+~  * Licensed under the Apache License, Version 2.0 (the "License");
+~  * you may not use this file except in compliance with the License.
+~  * You may obtain a copy of the License at
+~  *
+~  *      http://www.apache.org/licenses/LICENSE-2.0
+~  *
+~  * Unless required by applicable law or agreed to in writing, software
+~  * distributed under the License is distributed on an "AS IS" BASIS,
+~  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~  * See the License for the specific language governing permissions and
+~  * limitations under the License.
+~  */
+-->
+
+<div class="container-fluid">
+  <div class="container xd-container">
+    <h2>New Veterinarian</h2>
+    @if (errorMessage()) {
+      <div class="alert alert-danger">{{ errorMessage() }}</div>
+    }
+    <form id="vet" [formRoot]="vetForm">
+      <div class="row mb-3">
+        <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="firstName" [formField]="vetForm.firstName" [class.is-valid]="vetForm.firstName().dirty() && vetForm.firstName().valid()" [class.is-invalid]="vetForm.firstName().dirty() && vetForm.firstName().invalid()" />
+          @if (vetForm.firstName().dirty()) {
+            @for (error of vetForm.firstName().errors(); track error.kind) {
+              <div class="invalid-feedback">
+                @switch (error.kind) {
+                  @case ('maxLength') { First name may be only 30 characters long }
+                  @case ('minLength') { First name must be at least 1 character long }
+                  @case ('pattern') { First name may only consist of letters }
+                  @case ('required') { First name is required }
+                }
+              </div>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="lastName" [formField]="vetForm.lastName" [class.is-valid]="vetForm.lastName().dirty() && vetForm.lastName().valid()" [class.is-invalid]="vetForm.lastName().dirty() && vetForm.lastName().invalid()" />
+          @if (vetForm.lastName().dirty()) {
+            @for (error of vetForm.lastName().errors(); track error.kind) {
+              <div class="invalid-feedback">
+                @switch (error.kind) {
+                  @case ('maxLength') { Last name may be only 30 characters long }
+                  @case ('minLength') { Last name must be at least 1 character long }
+                  @case ('pattern') { Last name may only consist of letters }
+                  @case ('required') { Last name is required }
+                }
+              </div>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="specialties" class="col-sm-2 col-form-label">Specialty</label>
+        <div class="col-sm-10">
+          <select id="specialties" class="form-select" [formField]="vetForm.specialtyId">
+            @for (spec of specialtiesList(); track spec.id) {
+              <option [value]="spec.id">{{ spec.name }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="offset-sm-2 col-sm-10 d-flex gap-2">
+          <button class="btn btn-secondary" type="button" (click)="gotoVetList()">Back</button>
+          <button class="btn btn-secondary" type="submit" [disabled]="vetForm().invalid()">Save Vet</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

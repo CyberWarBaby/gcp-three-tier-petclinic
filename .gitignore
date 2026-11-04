@@ -1,10 +1,9 @@
+node_modules/
+target/
+dist/
 .terraform/
 *.tfstate
 *.tfstate.*
 *.tfvars
-crash.log
 .env
-*.pem
-*.key
-*.json
-app/
+.DS_Store

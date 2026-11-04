@@ -1,0 +1,546 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>spring-petclinic-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">spring-petclinic-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content module">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Modules</li>
+    <li class="breadcrumb-item" >SpecialtiesModule</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/specialties/specialties.module.ts</code>
+</div>
+
+<div class="text-center module-graph-container">
+    <div id="module-graph-svg">
+        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.47.0 (20210316.0004)
+ -->
+<!-- Title: dependencies Pages: 1 -->
+<svg width="1074pt" height="284pt"
+ viewBox="0.00 0.00 1074.00 284.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 280)">
+<title>dependencies</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-280 1070,-280 1070,4 -4,4"/>
+<text text-anchor="start" x="512.01" y="-42.4" font-family="Times-12" font-weight="bold" font-size="14.00">Legend</text>
+<polygon fill="#ffffb3" stroke="transparent" points="299,-10 299,-30 319,-30 319,-10 299,-10"/>
+<text text-anchor="start" x="322.63" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Declarations</text>
+<polygon fill="#8dd3c7" stroke="transparent" points="412,-10 412,-30 432,-30 432,-10 412,-10"/>
+<text text-anchor="start" x="435.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Module</text>
+<polygon fill="#80b1d3" stroke="transparent" points="498,-10 498,-30 518,-30 518,-10 498,-10"/>
+<text text-anchor="start" x="521.78" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Bootstrap</text>
+<polygon fill="#fdb462" stroke="transparent" points="595,-10 595,-30 615,-30 615,-10 595,-10"/>
+<text text-anchor="start" x="618.67" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Providers</text>
+<polygon fill="#fb8072" stroke="transparent" points="691,-10 691,-30 711,-30 711,-10 691,-10"/>
+<text text-anchor="start" x="714.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
+<g id="clust1" class="cluster">
+<title>cluster_SpecialtiesModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1058,-268 1058,-70 8,-70"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_SpecialtiesModule_declarations</title>
+<polygon fill="none" stroke="black" points="528,-78 528,-130 1050,-130 1050,-78 528,-78"/>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_SpecialtiesModule_exports</title>
+<polygon fill="none" stroke="black" points="434,-208 434,-260 608,-260 608,-208 434,-208"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_SpecialtiesModule_imports</title>
+<polygon fill="none" stroke="black" points="338,-78 338,-130 520,-130 520,-78 338,-78"/>
+</g>
+<g id="clust9" class="cluster">
+<title>cluster_SpecialtiesModule_providers</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 330,-130 330,-78 16,-78"/>
+</g>
+<!-- SpecialtyAddComponent -->
+<g id="node1" class="node"><a xlink:href="../components/SpecialtyAddComponent.html" href="../components/SpecialtyAddComponent.html" target="_top">
+<title>SpecialtyAddComponent</title>
+<polygon fill="#ffffb3" stroke="black" points="1041.54,-122 884.46,-122 884.46,-86 1041.54,-86 1041.54,-122"/>
+<text text-anchor="middle" x="963" y="-99.8" font-family="Times,serif" font-size="14.00">SpecialtyAddComponent</text>
+</a></g>
+<!-- SpecialtiesModule -->
+<g id="node4" class="node"><a xlink:href="../modules/SpecialtiesModule.html" href="../modules/SpecialtiesModule.html" target="_top">
+<title>SpecialtiesModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="581.2,-187 578.2,-191 557.2,-191 554.2,-187 460.8,-187 460.8,-151 581.2,-151 581.2,-187"/>
+<text text-anchor="middle" x="521" y="-164.8" font-family="Times,serif" font-size="14.00">SpecialtiesModule</text>
+</a></g>
+<!-- SpecialtyAddComponent&#45;&gt;SpecialtiesModule -->
+<g id="edge1" class="edge">
+<title>SpecialtyAddComponent&#45;&gt;SpecialtiesModule</title>
+<path fill="none" stroke="black" d="M963,-122.28C963,-143.32 963,-175 963,-175 963,-175 591.53,-175 591.53,-175"/>
+<polygon fill="black" stroke="black" points="591.53,-171.5 581.53,-175 591.53,-178.5 591.53,-171.5"/>
+</g>
+<!-- SpecialtyEditComponent -->
+<g id="node2" class="node"><a xlink:href="../components/SpecialtyEditComponent.html" href="../components/SpecialtyEditComponent.html" target="_top">
+<title>SpecialtyEditComponent</title>
+<polygon fill="#ffffb3" stroke="black" points="866.26,-122 709.74,-122 709.74,-86 866.26,-86 866.26,-122"/>
+<text text-anchor="middle" x="788" y="-99.8" font-family="Times,serif" font-size="14.00">SpecialtyEditComponent</text>
+</a></g>
+<!-- SpecialtyEditComponent&#45;&gt;SpecialtiesModule -->
+<g id="edge2" class="edge">
+<title>SpecialtyEditComponent&#45;&gt;SpecialtiesModule</title>
+<path fill="none" stroke="black" d="M788,-122.02C788,-139.37 788,-163 788,-163 788,-163 591.25,-163 591.25,-163"/>
+<polygon fill="black" stroke="black" points="591.25,-159.5 581.25,-163 591.25,-166.5 591.25,-159.5"/>
+</g>
+<!-- SpecialtyListComponent -->
+<g id="node3" class="node"><a xlink:href="../components/SpecialtyListComponent.html" href="../components/SpecialtyListComponent.html" target="_top">
+<title>SpecialtyListComponent</title>
+<polygon fill="#ffffb3" stroke="black" points="691.71,-122 536.29,-122 536.29,-86 691.71,-86 691.71,-122"/>
+<text text-anchor="middle" x="614" y="-99.8" font-family="Times,serif" font-size="14.00">SpecialtyListComponent</text>
+</a></g>
+<!-- SpecialtyListComponent&#45;&gt;SpecialtiesModule -->
+<g id="edge3" class="edge">
+<title>SpecialtyListComponent&#45;&gt;SpecialtiesModule</title>
+<path fill="none" stroke="black" d="M558.75,-122.11C558.75,-122.11 558.75,-140.99 558.75,-140.99"/>
+<polygon fill="black" stroke="black" points="555.25,-140.99 558.75,-150.99 562.25,-140.99 555.25,-140.99"/>
+</g>
+<!-- SpecialtyListComponent  -->
+<g id="node6" class="node"><a xlink:href="../components/SpecialtyListComponent.html" href="../components/SpecialtyListComponent.html" target="_top">
+<title>SpecialtyListComponent </title>
+<polygon fill="#fb8072" stroke="black" points="600.21,-252 441.79,-252 441.79,-216 600.21,-216 600.21,-252"/>
+<text text-anchor="middle" x="521" y="-229.8" font-family="Times,serif" font-size="14.00">SpecialtyListComponent </text>
+</a></g>
+<!-- SpecialtiesModule&#45;&gt;SpecialtyListComponent  -->
+<g id="edge5" class="edge">
+<title>SpecialtiesModule&#45;&gt;SpecialtyListComponent </title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M521,-187.11C521,-187.11 521,-205.99 521,-205.99"/>
+<polygon fill="black" stroke="black" points="517.5,-205.99 521,-215.99 524.5,-205.99 517.5,-205.99"/>
+</g>
+<!-- SpecialtiesRoutingModule -->
+<g id="node5" class="node"><a xlink:href="../modules/SpecialtiesRoutingModule.html" href="../modules/SpecialtiesRoutingModule.html" target="_top">
+<title>SpecialtiesRoutingModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="511.82,-122 508.82,-126 487.82,-126 484.82,-122 346.18,-122 346.18,-86 511.82,-86 511.82,-122"/>
+<text text-anchor="middle" x="429" y="-99.8" font-family="Times,serif" font-size="14.00">SpecialtiesRoutingModule</text>
+</a></g>
+<!-- SpecialtiesRoutingModule&#45;&gt;SpecialtiesModule -->
+<g id="edge4" class="edge">
+<title>SpecialtiesRoutingModule&#45;&gt;SpecialtiesModule</title>
+<path fill="none" stroke="black" d="M486.28,-122.11C486.28,-122.11 486.28,-140.99 486.28,-140.99"/>
+<polygon fill="black" stroke="black" points="482.78,-140.99 486.28,-150.99 489.78,-140.99 482.78,-140.99"/>
+</g>
+<!-- SpecResolver -->
+<g id="node7" class="node"><a xlink:href="../injectables/SpecResolver.html" href="../injectables/SpecResolver.html" target="_top">
+<title>SpecResolver</title>
+<ellipse fill="#fdb462" stroke="black" cx="258" cy="-104" rx="64.26" ry="18"/>
+<text text-anchor="middle" x="258" y="-99.8" font-family="Times,serif" font-size="14.00">SpecResolver</text>
+</a></g>
+<!-- SpecResolver&#45;&gt;SpecialtiesModule -->
+<g id="edge6" class="edge">
+<title>SpecResolver&#45;&gt;SpecialtiesModule</title>
+<path fill="none" stroke="black" d="M258,-122.02C258,-139.37 258,-163 258,-163 258,-163 450.66,-163 450.66,-163"/>
+<polygon fill="black" stroke="black" points="450.66,-166.5 460.66,-163 450.66,-159.5 450.66,-166.5"/>
+</g>
+<!-- SpecialtyService -->
+<g id="node8" class="node"><a xlink:href="../injectables/SpecialtyService.html" href="../injectables/SpecialtyService.html" target="_top">
+<title>SpecialtyService</title>
+<ellipse fill="#fdb462" stroke="black" cx="100" cy="-104" rx="75.86" ry="18"/>
+<text text-anchor="middle" x="100" y="-99.8" font-family="Times,serif" font-size="14.00">SpecialtyService</text>
+</a></g>
+<!-- SpecialtyService&#45;&gt;SpecialtiesModule -->
+<g id="edge7" class="edge">
+<title>SpecialtyService&#45;&gt;SpecialtiesModule</title>
+<path fill="none" stroke="black" d="M100,-122.28C100,-143.32 100,-175 100,-175 100,-175 450.68,-175 450.68,-175"/>
+<polygon fill="black" stroke="black" points="450.68,-178.5 460.68,-175 450.68,-171.5 450.68,-178.5"/>
+</g>
+</g>
+</svg>
+
+    </div>
+    <i id="fullscreen" class="icon ion-ios-resize module-graph-fullscreen-btn" aria-hidden="true"></i>
+    <div class="btn-group size-buttons">
+        <button id="zoom-in" class="btn btn-default btn-sm">Zoom in</button>
+        <button id="reset" class="btn btn-default btn-sm">Reset</button>
+        <button id="zoom-out" class="btn btn-default btn-sm">Zoom out</button>
+    </div>
+</div>
+<script src="../js/libs/svg-pan-zoom.min.js"></script>
+<script src="../js/svg-pan-zoom.controls.js"></script>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a href="#info" 
+            class="nav-link"
+            class="nav-link active"
+            role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+    </li>
+    <li class="nav-item">
+        <a href="#source" 
+            class="nav-link"
+            
+            role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+
+
+        <div class="container-fluid module">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Declarations<a href="https://angular.io/api/core/NgModule#declarations" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module declarations"><span class="icon ion-ios-information-circle-outline"></span></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../components/SpecialtyAddComponent.html">SpecialtyAddComponent</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../components/SpecialtyEditComponent.html">SpecialtyEditComponent</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../components/SpecialtyListComponent.html">SpecialtyListComponent</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Providers<a href="https://angular.io/api/core/NgModule#providers" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module providers"><span class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../injectables/SpecResolver.html">SpecResolver</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/SpecialtyService.html">SpecialtyService</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module imports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../modules/SpecialtiesRoutingModule.html">SpecialtiesRoutingModule</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Exports<a href="https://angular.io/api/core/NgModule#exports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module exports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../components/SpecialtyListComponent.html">SpecialtyListComponent</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+                <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../modules/AppModule.html" target="_self" >AppModule</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../modules/SpecialtiesRoutingModule.html" target="_self" >SpecialtiesRoutingModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/SpecialtyListComponent.html" target="_self" >SpecialtyListComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/SpecialtyAddComponent.html" target="_self" >SpecialtyAddComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/SpecialtyEditComponent.html" target="_self" >SpecialtyEditComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/SpecResolver.html" target="_self" >SpecResolver</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/SpecialtyService.html" target="_self" >SpecialtyService</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/*
+ *
+ *  * Copyright 2016-2017 the original author or authors.
+ *  *
+ *  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  * you may not use this file except in compliance with the License.
+ *  * You may obtain a copy of the License at
+ *  *
+ *  *      http://www.apache.org/licenses/LICENSE-2.0
+ *  *
+ *  * Unless required by applicable law or agreed to in writing, software
+ *  * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  * See the License for the specific language governing permissions and
+ *  * limitations under the License.
+ *
+ */
+
+/**
+ * @author Vitaliy Fedoriv
+ */
+
+import {NgModule} from &#x27;@angular/core&#x27;;
+import {CommonModule} from &#x27;@angular/common&#x27;;
+import {FormsModule} from &#x27;@angular/forms&#x27;;
+import {SpecialtyService} from &#x27;./specialty.service&#x27;;
+import {SpecialtyListComponent} from &#x27;./specialty-list/specialty-list.component&#x27;;
+import {SpecialtiesRoutingModule} from &#x27;./specialties-routing.module&#x27;;
+import {SpecialtyAddComponent} from &#x27;./specialty-add/specialty-add.component&#x27;;
+import {SpecialtyEditComponent} from &#x27;./specialty-edit/specialty-edit.component&#x27;;
+import {SpecResolver} from &#x27;./spec-resolver&#x27;;
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    SpecialtiesRoutingModule
+  ],
+  declarations: [
+    SpecialtyListComponent,
+    SpecialtyAddComponent,
+    SpecialtyEditComponent
+  ],
+  exports: [
+    SpecialtyListComponent
+  ],
+  providers: [SpecialtyService, SpecResolver]
+})
+export class SpecialtiesModule {
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
+            var COMPODOC_CURRENT_PAGE_URL = 'SpecialtiesModule.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,105 @@
+<!--
+~ /*
+~  * Copyright 2016-2017 the original author or authors.
+~  *
+~  * Licensed under the Apache License, Version 2.0 (the "License");
+~  * you may not use this file except in compliance with the License.
+~  * You may obtain a copy of the License at
+~  *
+~  *      http://www.apache.org/licenses/LICENSE-2.0
+~  *
+~  * Unless required by applicable law or agreed to in writing, software
+~  * distributed under the License is distributed on an "AS IS" BASIS,
+~  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~  * See the License for the specific language governing permissions and
+~  * limitations under the License.
+~  */
+-->
+
+<div class="container-fluid">
+  <div class="container xd-container">
+    <h2>Pet</h2>
+    @if (errorMessage()) {
+      <div class="alert alert-danger">{{ errorMessage() }}</div>
+    }
+    <form [formRoot]="petForm">
+      <div class="row mb-3">
+        <label for="owner_name" class="col-sm-2 col-form-label">Owner</label>
+        <div class="col-sm-10">
+          <input id="owner_name" class="form-control" type="text" value="{{ currentOwner().firstName }} {{ currentOwner().lastName }}" readonly />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="name" [formField]="petForm.name" [class.is-valid]="petForm.name().dirty() && petForm.name().valid()" [class.is-invalid]="petForm.name().dirty() && petForm.name().invalid()" />
+          @if (petForm.name().dirty()) {
+            @for (error of petForm.name().errors(); track error.kind) {
+              <div class="invalid-feedback">
+                @switch (error.kind) {
+                  @case ('required') { Name is required }
+                  @case ('minLength') { Name must be at least 1 character long }
+                  @case ('maxLength') { Name may be at most 30 characters long }
+                  @case ('pattern') { Name must begin with a letter or digit }
+                }
+              </div>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="birthDate" class="col-sm-2 col-form-label">Birth Date</label>
+        <div class="col-sm-10">
+          <input id="birthDate" matInput [matDatepicker]="birthDateDatepicker" [formField]="petForm.birthDate" [class.is-valid]="petForm.birthDate().dirty() && petForm.birthDate().valid()" [class.is-invalid]="petForm.birthDate().dirty() && petForm.birthDate().invalid()" />
+          <mat-datepicker-toggle matSuffix [for]="birthDateDatepicker" />
+          <mat-datepicker #birthDateDatepicker />
+          @if (petForm.birthDate().dirty()) {
+            @for (error of petForm.birthDate().errors(); track error.kind) {
+              <div class="invalid-feedback">
+                @switch (error.kind) {
+                  @case ('required') { Birth date is required }
+                }
+              </div>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="typeId" class="col-sm-2 col-form-label">Type</label>
+        <div class="col-sm-10">
+          <div class="row g-2">
+            <div class="col-sm-3">
+              <input id="type1" class="form-control" type="text" value="{{ pet().type?.name }}" readonly />
+            </div>
+            <div class="col-sm-9">
+              <select id="typeId" class="form-select" [formField]="petForm.typeId" [class.is-valid]="petForm.typeId().dirty() && petForm.typeId().valid()" [class.is-invalid]="petForm.typeId().dirty() && petForm.typeId().invalid()">
+                @for (petType of petTypes(); track petType.id) {
+                  <option [value]="petType.id">{{ petType.name }}</option>
+                }
+              </select>
+              @if (petForm.typeId().dirty()) {
+                @for (error of petForm.typeId().errors(); track error.kind) {
+                  <div class="invalid-feedback">
+                    @switch (error.kind) {
+                      @case ('required') { Pet type is required }
+                    }
+                  </div>
+                }
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="offset-sm-2 col-sm-10 d-flex gap-2">
+          <button class="btn btn-secondary" type="button" (click)="gotoOwnerDetail(currentOwner())">Back</button>
+          <button class="btn btn-secondary" type="submit" [disabled]="petForm().invalid()">Update Pet</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+<!--
+~ /*
+~  * Copyright 2016-2017 the original author or authors.
+~  *
+~  * Licensed under the Apache License, Version 2.0 (the "License");
+~  * you may not use this file except in compliance with the License.
+~  * You may obtain a copy of the License at
+~  *
+~  *      http://www.apache.org/licenses/LICENSE-2.0
+~  *
+~  * Unless required by applicable law or agreed to in writing, software
+~  * distributed under the License is distributed on an "AS IS" BASIS,
+~  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~  * See the License for the specific language governing permissions and
+~  * limitations under the License.
+~  */
+-->
+
+<div class="container-fluid">
+  <div class="container xd-container">
+    <h2>New Owner</h2>
+    @if (errorMessage()) {
+      <div class="alert alert-danger">{{ errorMessage() }}</div>
+    }
+    <form [formRoot]="ownerForm">
+      <div class="row mb-3">
+        <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="firstName" [formField]="ownerForm.firstName" [class.is-valid]="ownerForm.firstName().dirty() && ownerForm.firstName().valid()" [class.is-invalid]="ownerForm.firstName().dirty() && ownerForm.firstName().invalid()" />
+          @if (ownerForm.firstName().dirty()) {
+            @for (error of ownerForm.firstName().errors(); track error.kind) {
+              <div class="invalid-feedback">
+                @switch (error.kind) {
+                  @case ('required') { First name is required }
+                  @case ('minLength') { First name must be at least 1 character long }
+                  @case ('maxLength') { First name may be at most 30 characters long }
+                  @case ('pattern') { First name must consist of letters only }
+                }
+              </div>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="lastName" [formField]="ownerForm.lastName" [class.is-valid]="ownerForm.lastName().dirty() && ownerForm.lastName().valid()" [class.is-invalid]="ownerForm.lastName().dirty() && ownerForm.lastName().invalid()" />
+          @if (ownerForm.lastName().dirty()) {
+            @for (error of ownerForm.lastName().errors(); track error.kind) {
+              <div class="invalid-feedback">
+                @switch (error.kind) {
+                  @case ('required') { Last name is required }
+                  @case ('minLength') { Last name must be at least 1 character long }
+                  @case ('maxLength') { Last name may be at most 30 characters long }
+                  @case ('pattern') { Last name must consist of letters only }
+                }
+              </div>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="address" class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="address" [formField]="ownerForm.address" [class.is-valid]="ownerForm.address().dirty() && ownerForm.address().valid()" [class.is-invalid]="ownerForm.address().dirty() && ownerForm.address().invalid()" />
+          @if (ownerForm.address().dirty()) {
+            @for (error of ownerForm.address().errors(); track error.kind) {
+              <div class="invalid-feedback">
+                @switch (error.kind) {
+                  @case ('required') { Address is required }
+                  @case ('maxLength') { Address may be at most 255 characters long }
+                }
+              </div>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="city" class="col-sm-2 col-form-label">City</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="city" [formField]="ownerForm.city" [class.is-valid]="ownerForm.city().dirty() && ownerForm.city().valid()" [class.is-invalid]="ownerForm.city().dirty() && ownerForm.city().invalid()" />
+          @if (ownerForm.city().dirty()) {
+            @for (error of ownerForm.city().errors(); track error.kind) {
+              <div class="invalid-feedback">
+                @switch (error.kind) {
+                  @case ('required') { City is required }
+                  @case ('maxLength') { City may be at most 80 characters long }
+                }
+              </div>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="telephone" class="col-sm-2 col-form-label">Telephone</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="telephone" [formField]="ownerForm.telephone" [class.is-valid]="ownerForm.telephone().dirty() && ownerForm.telephone().valid()" [class.is-invalid]="ownerForm.telephone().dirty() && ownerForm.telephone().invalid()" />
+          @if (ownerForm.telephone().dirty()) {
+            @for (error of ownerForm.telephone().errors(); track error.kind) {
+              <div class="invalid-feedback">
+                @switch (error.kind) {
+                  @case ('required') { Phone number is required }
+                  @case ('minLength') { Phone number must be exactly 10 digits }
+                  @case ('maxLength') { Phone number must be exactly 10 digits }
+                  @case ('pattern') { Phone number only accepts digits }
+                }
+              </div>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="offset-sm-2 col-sm-10 d-flex gap-2">
+          <button class="btn btn-secondary" type="button" (click)="gotoOwnersList()">Back</button>
+          <button class="btn btn-secondary" type="submit" [disabled]="ownerForm().invalid()">Add Owner</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
