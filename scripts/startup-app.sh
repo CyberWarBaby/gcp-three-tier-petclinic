@@ -2,12 +2,16 @@
 set -e
 export HOME=/home/chronos
 MD=http://metadata.google.internal/computeMetadata/v1/instance/attributes
-attr() { curl -s -H "Metadata-Flavor: Google" "$MD/$1"; }
+attr() { curl -sf -H "Metadata-Flavor: Google" "$MD/$1" || true; }
 
 IMAGE=$(attr IMAGE)
 DB_HOST=$(attr DB_HOST)
 DB_USER=$(attr DB_USER)
 DB_PASSWORD=$(attr DB_PASSWORD)
+
+for v in IMAGE DB_HOST DB_USER DB_PASSWORD; do
+  [ -n "${!v}" ] || { echo "missing metadata: $v" >&2; exit 1; }
+done
 
 docker-credential-gcr configure-docker --registries=europe-west1-docker.pkg.dev
 docker pull "$IMAGE"
