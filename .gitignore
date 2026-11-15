@@ -7,3 +7,4 @@ dist/
 *.tfvars
 .env
 .DS_Store
+crash.log

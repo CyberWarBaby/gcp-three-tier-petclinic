@@ -1,0 +1,35 @@
+Layer 1: Network
+
+Look up: google_compute_network, google_compute_subnetwork
+Questions for the docs: what does auto_create_subnetworks = false change? Why would you want two subnets (web and app)?
+Checkpoint: gcloud compute networks subnets list
+
+Layer 2: Firewall and outbound access
+
+Look up: google_compute_firewall, google_compute_router, google_compute_router_nat
+Questions: a custom VPC has no default rules, so what’s blocked? How do you restrict a rule by tag instead of IP? Why do private VMs need NAT?
+You’ll need rules for: load balancer health checks → web, web → app, and IAP SSH. Search “GCP health check source ranges” and “IAP TCP forwarding range”.
+
+Layer 3: Database
+
+Look up: google_compute_global_address, google_service_networking_connection, then google_sql_database_instance, google_sql_database, google_sql_user
+Questions: what is private services access and why does Cloud SQL need it before it can get a private IP? What does depends_on do here? Look at random_password in the random provider for the password.
+Checkpoint: this one takes 10+ minutes, so start it early.
+
+Layer 4: App tier
+
+Look up: google_compute_instance_template, google_compute_region_instance_group_manager, google_compute_region_health_check, google_compute_region_backend_service, google_compute_forwarding_rule
+Questions: what’s an instance template vs an instance group? What load balancing scheme means “internal”? How do you pass a startup script, and how do you inject the DB IP into it (look up templatefile())?
+Start with a trivial startup script (just run a Python HTTP server) and prove the health check goes green before adding the DB query.
+
+Layer 5: Web tier
+
+Same resources as layer 4, plus: google_compute_health_check, google_compute_backend_service, google_compute_url_map, google_compute_target_http_proxy, google_compute_global_address, google_compute_global_forwarding_rule
+Questions: what’s a named port and why does the backend service need one? What’s the chain from forwarding rule to proxy to URL map to backend service?
+
+Layer 6: Outputs
+
+Add output blocks for the load balancer IP, then curl it.
+When you get stuck
+
+Read the actual error, because Terraform and GCP errors usually name the exact problem (your two errors did). Then check the resource’s docs page for the argument it mentions, and verify values with gcloud.
