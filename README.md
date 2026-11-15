@@ -17,7 +17,7 @@ Web (NGINX + Angular) -> internal load balancer -> app (Spring Boot) -> Cloud SQ
 
 This screenshot captures an early Terraform apply while creating the GCP network resource:
 
-![Terraform apply creating the VPC network](docs/screenshots/Screenshot%20From%202026-11-10%2017-41-04.png)
+![Terraform apply creating the VPC network](docs/screenshots/screenshotTF.png)
 
 ## Credits
 `app/` and `web/` come from spring-petclinic/spring-petclinic-rest and spring-petclinic/spring-petclinic-angular (Apache 2.0).
