@@ -42,3 +42,8 @@ variable "web_instance_count" {
   type    = number
   default = 2
 } # pipeline test
+
+variable "image_tag" {
+  type    = string
+  default = "998a1b4"
+}

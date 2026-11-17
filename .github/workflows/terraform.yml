@@ -38,6 +38,9 @@ jobs:
           terraform plan -input=false -no-color -out=tfplan
           echo '### Terraform plan' >> "$GITHUB_STEP_SUMMARY"
           terraform show -no-color tfplan >> "$GITHUB_STEP_SUMMARY"
+    env:
+      TF_VAR_image_tag: ${{ vars.IMAGE_TAG }}
+
 
   apply:
     if: github.event_name == 'push'
@@ -58,3 +61,6 @@ jobs:
 
       - run: terraform init -input=false
       - run: terraform apply -input=false -auto-approve
+
+    env:
+      TF_VAR_image_tag: ${{ vars.IMAGE_TAG }}
