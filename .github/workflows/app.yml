@@ -1,0 +1,70 @@
+name: app
+
+on:
+  push:
+    branches: [main]
+    paths: ['app/**', 'web/**']
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  REGISTRY: europe-west1-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/three-tier-repo
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    concurrency:
+      group: terraform-apply
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account: ${{ vars.GCP_CI_SA_EMAIL }}
+
+      - uses: google-github-actions/setup-gcloud@v3
+
+      - name: Docker auth
+        run: gcloud auth configure-docker europe-west1-docker.pkg.dev --quiet
+
+      - name: Build and push
+        run: |
+          docker build --platform linux/amd64 -t $REGISTRY/app:${{ github.sha }} app/
+          docker build --platform linux/amd64 -t $REGISTRY/web:${{ github.sha }} web/
+          docker push $REGISTRY/app:${{ github.sha }}
+          docker push $REGISTRY/web:${{ github.sha }}
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: Roll out
+        working-directory: infra
+        run: |
+          terraform init -input=false
+          terraform apply -input=false -auto-approve -var image_tag=${{ github.sha }}
+
+      - name: Wait for MIGs
+        run: |
+          gcloud compute instance-groups managed wait-until three-tier-app-mig --stable --region europe-west1
+          gcloud compute instance-groups managed wait-until three-tier-web-mig --stable --region europe-west1
+
+      - name: Smoke test
+        working-directory: infra
+        run: |
+          IP=$(terraform output -raw lb_ip)
+          for i in $(seq 1 20); do
+            if curl -sf "http://$IP/petclinic/api/pettypes" > /dev/null; then
+              echo "OK"; exit 0
+            fi
+            echo "attempt $i failed"; sleep 15
+          done
+          exit 1
+
+      - name: Remember the deployed tag
+        env:
+          GH_TOKEN: ${{ secrets.VARS_TOKEN }}
+        run: gh variable set IMAGE_TAG --body "${{ github.sha }}"
