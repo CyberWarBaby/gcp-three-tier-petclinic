@@ -41,4 +41,4 @@ variable "app_instance_count" {
 variable "web_instance_count" {
   type    = number
   default = 2
-}# pipeline test
+} # pipeline test
