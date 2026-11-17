@@ -33,4 +33,4 @@ RUN chown -R nginx:nginx /etc/nginx/conf.d /var/cache/nginx && \
 ENV ILB_IP=10.0.0.10
 EXPOSE 8080
 USER nginx
-HEALTHCHECK CMD wget -qO- http://127.0.0.1:8080/ >/dev/null || exit 1
+HEALTHCHECK CMD wget -qO- http://127.0.0.1:8080/ >/dev/null || exit 1# trigger CI build
