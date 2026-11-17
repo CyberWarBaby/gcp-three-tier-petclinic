@@ -65,10 +65,10 @@ resource "google_compute_region_instance_group_manager" "app" {
     google_sql_user.petclinic
   ]
   update_policy {
-  type                  = "PROACTIVE"
-  minimal_action        = "REPLACE"
-  max_surge_fixed       = 3
-  max_unavailable_fixed = 3
+    type                  = "PROACTIVE"
+    minimal_action        = "REPLACE"
+    max_surge_fixed       = 3
+    max_unavailable_fixed = 3
   }
 }
 
@@ -156,10 +156,10 @@ resource "google_compute_region_instance_group_manager" "web" {
   }
 
   update_policy {
-  type                  = "PROACTIVE"
-  minimal_action        = "REPLACE"
-  max_surge_fixed       = 3
-  max_unavailable_fixed = 3
+    type                  = "PROACTIVE"
+    minimal_action        = "REPLACE"
+    max_surge_fixed       = 3
+    max_unavailable_fixed = 3
   }
   depends_on = [google_compute_router_nat.nat]
 }
