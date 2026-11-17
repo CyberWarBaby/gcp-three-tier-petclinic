@@ -29,7 +29,7 @@ resource "google_compute_instance_template" "app" {
     DB_HOST : google_sql_database_instance.db.private_ip_address
     DB_USER : var.db_user
     DB_PASSWORD : random_password.db.result
-    IMAGE : "europe-west1-docker.pkg.dev/three-tier-petclinic-tf/three-tier-repo/app:998a1b4"
+    IMAGE : "${var.region}-docker.pkg.dev/${var.project}/${google_artifact_registry_repository.docker_repo.repository_id}/app:${var.image_tag}"
   }
 
   metadata_startup_script = file("${path.module}/../scripts/startup-app.sh")
@@ -64,6 +64,12 @@ resource "google_compute_region_instance_group_manager" "app" {
     google_sql_database.petclinic,
     google_sql_user.petclinic
   ]
+  update_policy {
+  type                  = "PROACTIVE"
+  minimal_action        = "REPLACE"
+  max_surge_fixed       = 3
+  max_unavailable_fixed = 3
+  }
 }
 
 resource "google_compute_region_backend_service" "app" {
@@ -115,7 +121,7 @@ resource "google_compute_instance_template" "web" {
   metadata = {
     enable-oslogin = "TRUE"
     ILB_IP         = google_compute_forwarding_rule.app.ip_address
-    IMAGE          = "europe-west1-docker.pkg.dev/three-tier-petclinic-tf/three-tier-repo/web:998a1b4"
+    IMAGE          = "${var.region}-docker.pkg.dev/${var.project}/${google_artifact_registry_repository.docker_repo.repository_id}/app:${var.image_tag}"
   }
 
   metadata_startup_script = file("${path.module}/../scripts/startup-web.sh")
@@ -149,6 +155,12 @@ resource "google_compute_region_instance_group_manager" "web" {
     port = 80
   }
 
+  update_policy {
+  type                  = "PROACTIVE"
+  minimal_action        = "REPLACE"
+  max_surge_fixed       = 3
+  max_unavailable_fixed = 3
+  }
   depends_on = [google_compute_router_nat.nat]
 }
 
