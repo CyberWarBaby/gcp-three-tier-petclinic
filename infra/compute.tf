@@ -121,7 +121,7 @@ resource "google_compute_instance_template" "web" {
   metadata = {
     enable-oslogin = "TRUE"
     ILB_IP         = google_compute_forwarding_rule.app.ip_address
-    IMAGE          = "${var.region}-docker.pkg.dev/${var.project}/${google_artifact_registry_repository.docker_repo.repository_id}/app:${var.image_tag}"
+    IMAGE          = "${var.region}-docker.pkg.dev/${var.project}/${google_artifact_registry_repository.docker_repo.repository_id}/web:${var.image_tag}"
   }
 
   metadata_startup_script = file("${path.module}/../scripts/startup-web.sh")
