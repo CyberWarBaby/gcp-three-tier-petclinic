@@ -15,6 +15,6 @@ COPY --from=build /workspace/target/*.jar app.jar
 USER appuser
 EXPOSE 9966
 ENTRYPOINT ["java", "-jar", "app.jar"]
-# trigger CI build
 
-# trigger CI build
+
+
