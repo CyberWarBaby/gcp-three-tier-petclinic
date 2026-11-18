@@ -17,3 +17,4 @@ EXPOSE 9966
 ENTRYPOINT ["java", "-jar", "app.jar"]
 # trigger CI build
 
+# trigger CI build
