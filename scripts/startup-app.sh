@@ -19,6 +19,7 @@ docker rm -f app 2>/dev/null || true
 docker run -d --name app --restart=always -p 9966:9966 \
   -e SPRING_PROFILES_ACTIVE=postgres,spring-data-jpa \
   -e SPRING_DATASOURCE_URL="jdbc:postgresql://$DB_HOST:5432/petclinic" \
+  -e SPRING_SQL_INIT_MODE=never \
   -e SPRING_DATASOURCE_USERNAME="$DB_USER" \
   -e SPRING_DATASOURCE_PASSWORD="$DB_PASSWORD" \
   "$IMAGE"
