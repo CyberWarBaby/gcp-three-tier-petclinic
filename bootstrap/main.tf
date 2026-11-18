@@ -77,3 +77,9 @@ resource "google_storage_bucket_iam_member" "ci_state" {
   role   = "roles/storage.objectAdmin"
   member = "serviceAccount:${google_service_account.ci.email}"
 }
+
+resource "google_project_iam_member" "monitoring_viewer" {
+  project = var.project
+  role    = "roles/compute.viewer"
+  member  = "serviceAccount:three-tier-monitoring-sa@three-tier-petclinic-tf.iam.gserviceaccount.com"
+}
