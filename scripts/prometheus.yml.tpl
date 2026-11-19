@@ -34,7 +34,9 @@ scrape_configs:
         port: 9100
     relabel_configs:
       - source_labels: [__meta_gce_tags]
-        regex: '.*,(app|web),.*'
+        regex: '.*,app,.*'
         action: keep
       - source_labels: [__meta_gce_instance_name]
         target_label: instance
+      - target_label: application
+        replacement: petclinic
