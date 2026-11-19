@@ -69,4 +69,3 @@ resource "google_service_networking_connection" "psa" {
 
   deletion_policy = "ABANDON"
 }
-#

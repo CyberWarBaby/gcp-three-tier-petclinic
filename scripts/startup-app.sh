@@ -28,3 +28,5 @@ docker rm -f node_exporter 2>/dev/null || true
 docker run -d --name node_exporter --restart=always \
   --net=host --pid=host -v /:/host:ro,rslave \
   prom/node-exporter --path.rootfs=/host
+
+iptables -w -A INPUT -p tcp --dport 9100 -j ACCEPT
