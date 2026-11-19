@@ -20,6 +20,8 @@ scrape_configs:
         action: keep
       - source_labels: [__meta_gce_instance_name]
         target_label: instance
+      - target_label: application
+        replacement: petclinic
 
   - job_name: node
     gce_sd_configs:
