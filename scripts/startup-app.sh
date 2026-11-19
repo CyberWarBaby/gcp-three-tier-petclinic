@@ -23,3 +23,8 @@ docker run -d --name app --restart=always -p 9966:9966 \
   -e SPRING_DATASOURCE_USERNAME="$DB_USER" \
   -e SPRING_DATASOURCE_PASSWORD="$DB_PASSWORD" \
   "$IMAGE"
+
+docker rm -f node_exporter 2>/dev/null || true
+docker run -d --name node_exporter --restart=always \
+  --net=host --pid=host -v /:/host:ro,rslave \
+  prom/node-exporter --path.rootfs=/host

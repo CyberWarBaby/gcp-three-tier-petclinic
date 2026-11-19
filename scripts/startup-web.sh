@@ -11,3 +11,8 @@ docker-credential-gcr configure-docker --registries=europe-west1-docker.pkg.dev
 docker pull "$IMAGE"
 docker rm -f web 2>/dev/null || true
 docker run -d --name web --restart=always -p 80:8080 -e ILB_IP="$ILB_IP" "$IMAGE"
+
+docker rm -f node_exporter 2>/dev/null || true
+docker run -d --name node_exporter --restart=always \
+  --net=host --pid=host -v /:/host:ro,rslave \
+  prom/node-exporter --path.rootfs=/host
