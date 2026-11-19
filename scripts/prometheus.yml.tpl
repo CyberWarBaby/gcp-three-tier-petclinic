@@ -20,6 +20,8 @@ scrape_configs:
         action: keep
       - source_labels: [__meta_gce_instance_name]
         target_label: instance
+      - target_label: application
+        replacement: petclinic
 
   - job_name: node
     gce_sd_configs:
@@ -34,9 +36,7 @@ scrape_configs:
         port: 9100
     relabel_configs:
       - source_labels: [__meta_gce_tags]
-        regex: '.*,app,.*'
+        regex: '.*,(app|web),.*'
         action: keep
       - source_labels: [__meta_gce_instance_name]
         target_label: instance
-      - target_label: application
-        replacement: petclinic
